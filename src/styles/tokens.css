@@ -1,0 +1,41 @@
+/* Huisstijl volgens brandboek v1.1 (olijf en zand). Kleuren en fonts enkel hier aanpassen. */
+
+@font-face { font-family: "Poppins"; src: url("/assets/fonts/poppins-500.woff2") format("woff2"); font-weight: 500; font-display: swap; }
+@font-face { font-family: "Poppins"; src: url("/assets/fonts/poppins-600.woff2") format("woff2"); font-weight: 600; font-display: swap; }
+@font-face { font-family: "Inter"; src: url("/assets/fonts/inter-400.woff2") format("woff2"); font-weight: 400; font-display: swap; }
+@font-face { font-family: "Inter"; src: url("/assets/fonts/inter-600.woff2") format("woff2"); font-weight: 600; font-display: swap; }
+
+:root {
+  /* Palet */
+  --olijf: #3A3D2E;        /* hoofdkleur: tekst, knoppen, donkere vlakken */
+  --olijf-diep: #2F3127;   /* hover op olijf */
+  --olijf-lijn: #4B4E3E;   /* lijnen op olijf */
+  --creme: #F3F0E6;        /* hoofdkleur: achtergrond */
+  --zand: #C9B58F;         /* accent, enkel op donker of als vlak — nooit als tekst op licht */
+  --brons: #7E6B45;        /* kleine tekst, labels, links op licht */
+  --linnen: #E6DECB;       /* steunkleur: vlakken */
+  --steen: #8C8A7E;        /* steunkleur */
+  --tekst-2: #5A5C4F;      /* secundaire tekst op licht */
+  --tekst-op-donker: rgba(243, 240, 230, .78);
+  --lijn-licht: #D9D0BA;
+  --wit: #FFFFFF;
+
+  /* Typografie */
+  --font-kop: "Poppins", Arial, sans-serif;
+  --font-tekst: "Inter", Arial, sans-serif;
+
+  /* Layout */
+  --wrap: 1200px;
+  --gutter: clamp(16px, 4vw, 48px);
+  --radius: 22px;
+  --header-h: 84px;
+  --ease: cubic-bezier(.2, .7, .2, 1);
+
+  /* Draadpatroon (zand op olijf, brons op crème): lijnen onder de hoek van de poten van de W (270:545) */
+  --pattern-dark: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='81' viewBox='0 0 40 81'%3E%3Cg stroke='%23C9B58F' stroke-opacity='.4' stroke-width='1.2' fill='none'%3E%3Cpath d='M0 0L40 81M40 0L0 81'/%3E%3C/g%3E%3C/svg%3E");
+  --pattern-light: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='81' viewBox='0 0 40 81'%3E%3Cg stroke='%237E6B45' stroke-opacity='.26' stroke-width='1.2' fill='none'%3E%3Cpath d='M0 0L40 81M40 0L0 81'/%3E%3C/g%3E%3C/svg%3E");
+}
+
+@media (max-width: 760px) {
+  :root { --header-h: 72px; }
+}

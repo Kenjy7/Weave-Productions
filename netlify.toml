@@ -1,0 +1,26 @@
+[build]
+  command = "npm run build"
+  publish = "dist"
+
+# Elke pagina wordt vooraf als HTML gemaakt (vite-ssg).
+# Onbekende adressen krijgen automatisch dist/404.html met een echte 404-status.
+
+# Bestanden met een unieke naam (door Vite) mogen lang in de cache
+[[headers]]
+  for = "/_app/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+# Fonts veranderen nooit
+[[headers]]
+  for = "/assets/fonts/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    X-Frame-Options = "DENY"
+    Permissions-Policy = "camera=(), microphone=(), geolocation=()"

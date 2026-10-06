@@ -1,0 +1,73 @@
+/* Algemene stijlen die op meerdere plaatsen terugkomen. Sectie-specifieke stijl staat in de component zelf. */
+
+*, *::before, *::after { box-sizing: border-box; }
+html { scroll-padding-top: calc(var(--header-h) + 12px); -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0;
+  background: var(--creme);
+  color: var(--olijf);
+  font: 400 17px/1.6 var(--font-tekst);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+img { display: block; max-width: 100%; height: auto; }
+h1, h2, h3 { font-family: var(--font-kop); margin: 0; letter-spacing: -0.015em; }
+h1 { font-weight: 500; font-size: clamp(40px, 6.2vw, 76px); line-height: 1.04; letter-spacing: -0.025em; }
+h2 { font-weight: 500; font-size: clamp(28px, 3.4vw, 40px); line-height: 1.15; }
+h3 { font-weight: 600; font-size: 22px; line-height: 1.3; }
+p { margin: 0 0 1em; }
+a { color: var(--brons); text-underline-offset: 3px; }
+ol, ul { list-style: none; margin: 0; padding: 0; }
+[hidden] { display: none !important; }
+
+:focus-visible { outline: 2px solid var(--brons); outline-offset: 3px; border-radius: 4px; }
+.on-dark :focus-visible { outline-color: var(--zand); }
+
+.wrap { width: 100%; max-width: var(--wrap); margin: 0 auto; padding: 0 var(--gutter); }
+
+.skip {
+  position: absolute; left: 16px; top: -60px; z-index: 100;
+  background: var(--olijf); color: var(--creme); padding: 10px 16px; border-radius: 8px;
+  font-weight: 600; text-decoration: none; transition: top .2s;
+}
+.skip:focus { top: 16px; }
+
+.label {
+  font: 600 13px/1.2 var(--font-tekst);
+  text-transform: uppercase; letter-spacing: .18em;
+  color: var(--brons); margin: 0 0 20px;
+}
+.on-dark .label { color: var(--zand); }
+
+/* Knoppen */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center;
+  min-height: 52px; padding: 0 28px; border-radius: 999px;
+  font: 600 16px/1.3 var(--font-tekst); text-decoration: none; text-align: center;
+  border: 2px solid transparent; cursor: pointer;
+  transition: background-color .25s var(--ease), color .25s var(--ease), border-color .25s var(--ease), transform .25s var(--ease);
+}
+.btn-primary { background: var(--olijf); color: var(--creme); }
+.btn-primary:hover { background: var(--olijf-diep); }
+.btn-ghost { border-color: var(--olijf); color: var(--olijf); }
+.btn-ghost:hover { background: var(--olijf); color: var(--creme); }
+.on-dark .btn-primary { background: var(--zand); color: var(--olijf); }
+.on-dark .btn-primary:hover { background: var(--creme); }
+.on-dark .btn-ghost { border-color: rgba(243, 240, 230, .5); color: var(--creme); }
+.on-dark .btn-ghost:hover { border-color: var(--creme); background: var(--creme); color: var(--olijf); }
+.btn:active { transform: translateY(1px); }
+.btn-sm { min-height: 44px; padding: 0 22px; font-size: 15px; }
+.actions { display: flex; flex-wrap: wrap; gap: 12px; }
+
+/* Draadpatroon */
+.pattern { background-color: var(--olijf); background-image: var(--pattern-dark); background-size: 40px 81px; }
+.pattern-light { background-color: var(--creme); background-image: var(--pattern-light); }
+
+/* Zacht verschijnen bij scrollen (v-reveal) */
+.reveal { opacity: 0; transform: translateY(14px); transition: opacity .8s var(--ease), transform .8s var(--ease); }
+.reveal.is-in { opacity: 1; transform: none; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { transition: none !important; animation: none !important; }
+  .reveal { opacity: 1; transform: none; }
+}
