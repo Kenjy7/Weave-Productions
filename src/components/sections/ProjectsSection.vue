@@ -1,15 +1,15 @@
 <script setup>
 import FotoOfPatroon from '../FotoOfPatroon.vue'
+import SectieKop from '../SectieKop.vue'
 import { projecten } from '../../content/home'
+
+defineProps({ nummer: Number })
 </script>
 
 <template>
-  <section class="projects" id="projecten" aria-labelledby="projecten-titel">
+  <section class="sectie" id="projecten" aria-labelledby="projecten-titel">
     <div class="wrap">
-      <div class="projects-head">
-        <p class="label">{{ projecten.label }}</p>
-        <h2 id="projecten-titel">{{ projecten.titel }}</h2>
-      </div>
+      <SectieKop :nummer="nummer" :label="projecten.label" :titel="projecten.titel" id="projecten-titel" />
       <ul class="project-grid">
         <li v-for="(project, i) in projecten.items" :key="project.foto" v-reveal class="project" :class="{ 'project-lg': i === 0 }">
           <figure class="project-media pattern">
@@ -25,9 +25,7 @@ import { projecten } from '../../content/home'
 </template>
 
 <style scoped>
-.projects { padding: clamp(72px, 10vw, 140px) 0 0; }
-.projects-head { max-width: 640px; margin-bottom: clamp(36px, 5vw, 56px); }
-.project-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: clamp(32px, 4vw, 48px) 24px; }
+.project-grid { margin-top: clamp(56px, 7vw, 96px); display: grid; grid-template-columns: repeat(2, 1fr); gap: clamp(32px, 4vw, 48px) 24px; }
 .project-lg { grid-column: 1 / -1; }
 .project-media { margin: 0 0 20px; aspect-ratio: 4 / 3; border-radius: var(--radius); overflow: hidden; }
 .project-lg .project-media { aspect-ratio: 21 / 9; }

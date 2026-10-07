@@ -1,16 +1,17 @@
 <script setup>
+import SectieKop from '../SectieKop.vue'
 import { waarden } from '../../content/home'
+
+defineProps({ nummer: Number })
 </script>
 
 <template>
-  <section class="values" aria-labelledby="waarden-titel">
+  <section class="sectie" aria-labelledby="waarden-titel">
     <div class="wrap">
-      <div class="values-head">
-        <p class="label">{{ waarden.label }}</p>
-        <h2 id="waarden-titel">{{ waarden.titel }}</h2>
-      </div>
-      <ul class="value-grid">
-        <li v-for="waarde in waarden.items" :key="waarde.titel" v-reveal>
+      <SectieKop :nummer="nummer" :label="waarden.label" :titel="waarden.titel" id="waarden-titel" />
+      <ul class="raster">
+        <li v-for="(waarde, i) in waarden.items" :key="waarde.titel" v-reveal :style="{ transitionDelay: `${i * 80}ms` }">
+          <svg class="teken" viewBox="0 0 1000 730" aria-hidden="true"><path d="M95 95 365 640 635 95M365 95 635 640 905 95" /></svg>
           <h3>{{ waarde.titel }}</h3>
           <p>{{ waarde.tekst }}</p>
         </li>
@@ -20,17 +21,24 @@ import { waarden } from '../../content/home'
 </template>
 
 <style scoped>
-.values { padding: clamp(72px, 10vw, 140px) 0; }
-.values-head { max-width: 640px; margin-bottom: clamp(36px, 5vw, 56px); }
-.value-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
-li { background: var(--linnen); border-radius: var(--radius); padding: clamp(28px, 3.5vw, 44px); }
-h3 { margin-bottom: 10px; }
-p { margin: 0; color: var(--tekst-2); max-width: 30em; }
-/* De laatste waarde ("met een knipoog") valt bewust uit de toon */
-li:last-child { background: var(--olijf); color: var(--creme); }
-li:last-child p { color: var(--tekst-op-donker); }
+.raster {
+  display: grid; grid-template-columns: repeat(4, 1fr);
+  margin-top: clamp(56px, 7vw, 96px);
+  border-top: 1px solid var(--lijn-licht);
+}
+li { padding: clamp(28px, 3vw, 40px) clamp(20px, 2.4vw, 32px) 0 0; }
+li + li { padding-left: clamp(20px, 2.4vw, 32px); border-left: 1px solid var(--lijn-licht); }
+.teken { width: 30px; height: 22px; margin-bottom: 40px; fill: none; stroke: var(--zand); stroke-width: 100; stroke-linecap: round; stroke-linejoin: round; }
+h3 { margin-bottom: 12px; }
+p { margin: 0; color: var(--tekst-2); }
 
-@media (max-width: 760px) {
-  .value-grid { grid-template-columns: 1fr; }
+@media (max-width: 960px) {
+  .raster { grid-template-columns: 1fr 1fr; border-top: 0; }
+  li, li + li { padding: 32px 24px 32px 0; border-left: 0; border-top: 1px solid var(--lijn-licht); }
+  li:nth-child(even) { padding-left: 24px; border-left: 1px solid var(--lijn-licht); }
+}
+@media (max-width: 560px) {
+  .raster { grid-template-columns: 1fr; }
+  li:nth-child(even) { padding-left: 0; border-left: 0; }
 }
 </style>

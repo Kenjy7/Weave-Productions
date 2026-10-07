@@ -65,7 +65,7 @@ onBeforeUnmount(() => {
 <style scoped>
 .site-header {
   position: sticky; top: 0; z-index: 50;
-  background: rgba(243, 240, 230, .92);
+  background: rgba(255, 255, 255, .92);
   backdrop-filter: saturate(1.4) blur(10px);
   -webkit-backdrop-filter: saturate(1.4) blur(10px);
   border-bottom: 1px solid transparent;
@@ -98,7 +98,7 @@ onBeforeUnmount(() => {
     display: none;
     position: absolute; top: var(--header-h); left: 0; right: 0;
     flex-direction: column; align-items: stretch; gap: 0;
-    background: var(--creme); padding: 8px var(--gutter) 24px;
+    background: var(--wit); padding: 8px var(--gutter) 24px;
     border-bottom: 1px solid var(--linnen);
   }
   .nav.is-open { display: flex; }

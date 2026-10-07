@@ -17,15 +17,20 @@ usePaginaHead({ ...seo.home, pad: '/' })
 useHead({
   script: [{ type: 'application/ld+json', innerHTML: JSON.stringify(organisatieSchema) }],
 })
+
+// Genummerde secties (01, 02, …). De nummering past zich vanzelf aan.
+const secties = [
+  ServicesSection,
+  ProcessSection,
+  ...(toonProjecten ? [ProjectsSection] : []),
+  ValuesSection,
+  AboutSection,
+  ContactSection,
+]
 </script>
 
 <template>
   <HeroSection />
   <IntroSection />
-  <ServicesSection />
-  <ProcessSection />
-  <ProjectsSection v-if="toonProjecten" />
-  <ValuesSection />
-  <AboutSection />
-  <ContactSection />
+  <component :is="sectie" v-for="(sectie, i) in secties" :key="i" :nummer="i + 1" />
 </template>

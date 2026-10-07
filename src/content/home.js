@@ -4,28 +4,29 @@ export const navigatie = [
   { label: 'Diensten', hash: '#diensten' },
   { label: 'Aanpak', hash: '#aanpak' },
   { label: 'Projecten', hash: '#projecten', alleenAlsProjecten: true },
-  { label: 'Over Senne', hash: '#over' },
+  { label: 'Over Mij', hash: '#over' },
 ]
 
 export const hero = {
-  label: 'Eventproductie & coördinatie',
+  label: 'Eventbureau · Eventproductie & coördinatie',
   titel: 'Wij weven jouw event tot één geheel.',
-  intro: 'Van het eerste idee tot de laatste gast die naar huis gaat. Eén aanspreekpunt dat alle draden in handen houdt.',
-  knopPrimair: { label: 'Plan een gesprek', hash: '#contact' },
-  knopSecundair: { label: 'Bekijk onze aanpak', hash: '#aanpak' },
+  // Eerst kennismaken: wie we zijn en wat we doen. De oproep komt pas in de volgende sectie.
+  intro: 'Weave Productions is het eventbureau van Senne Van Herreweghe. Wij nemen de productie en coördinatie van je event op ons: planning, leveranciers, techniek en de mensen op de vloer.',
+  kenmerken: ['Bedrijfsevents', 'Eigen projecten', 'Eén aanspreekpunt'],
+  verder: { label: 'Lees verder', hash: '#intro' },
   klanten: 'Onder meer voor DPG Media',
-  draaiboek: [
-    { tijd: '07:00', taak: 'Opbouw podium en licht' },
-    { tijd: '10:30', taak: 'Soundcheck met de presentator' },
-    { tijd: '14:00', taak: 'Catering klaar, badges op tafel' },
-    { tijd: '17:30', taak: 'Deuren open', nu: true },
-    { tijd: '23:30', taak: 'Laatste gast weg, afbraak start' },
-  ],
+  // Brede foto onder de titel: public/assets/foto/hero.jpg (liggend, min. 2400 px breed).
+  // Zolang het bestand er niet is, toont de site het draadpatroon.
+  foto: '/assets/foto/hero.jpg',
+  fotoAlt: 'Sfeerbeeld van een event van Weave Productions',
 }
 
 export const intro = {
   deel1: 'Een event bestaat uit tientallen losse draden.',
   deel2: 'Wij zorgen dat ze van begin tot eind in elkaar geweven worden.',
+  oproep: 'Benieuwd wat we voor jouw event kunnen doen?',
+  knopPrimair: { label: 'Plan een gesprek', hash: '#contact' },
+  knopSecundair: { label: 'Bekijk onze aanpak', hash: '#aanpak' },
 }
 
 export const diensten = {
@@ -88,8 +89,9 @@ export const over = {
   fotoAlt: 'Senne Van Herreweghe aan het werk op een event',
   alineas: [
     'Achter Weave Productions staat Senne Van Herreweghe. Als freelancer verzorgt hij de productie en coördinatie van events: van bedrijfsevents voor klanten zoals DPG Media tot kleinere eigen projecten.',
-    'Wat je van hem mag verwachten? Rust op de vloer, een draaiboek dat klopt, en iemand die opneemt als je belt.',
   ],
+  // Groot uitgelicht, als belofte
+  belofte: 'Rust op de vloer, een draaiboek dat klopt, en iemand die opneemt als je belt.',
 }
 
 export const contact = {

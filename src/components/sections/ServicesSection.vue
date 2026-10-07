@@ -1,24 +1,19 @@
 <script setup>
+import SectieKop from '../SectieKop.vue'
 import { diensten } from '../../content/home'
 
-const nummer = (i) => String(i + 1).padStart(2, '0')
+defineProps({ nummer: Number })
 </script>
 
 <template>
-  <section class="services" id="diensten" aria-labelledby="diensten-titel">
-    <div class="wrap services-grid">
-      <div class="services-head">
-        <p class="label">{{ diensten.label }}</p>
-        <h2 id="diensten-titel">{{ diensten.titel }}</h2>
-        <p>{{ diensten.intro }}</p>
-      </div>
-      <ol class="service-list">
-        <li v-for="(dienst, i) in diensten.items" :key="dienst.titel" v-reveal>
-          <span class="num">{{ nummer(i) }}</span>
-          <div>
-            <h3>{{ dienst.titel }}</h3>
-            <p>{{ dienst.tekst }}</p>
-          </div>
+  <section class="sectie band-creme" id="diensten" aria-labelledby="diensten-titel">
+    <div class="wrap">
+      <SectieKop :nummer="nummer" :label="diensten.label" :titel="diensten.titel" :intro="diensten.intro" id="diensten-titel" />
+
+      <ol class="lijst">
+        <li v-for="dienst in diensten.items" :key="dienst.titel" v-reveal>
+          <h3>{{ dienst.titel }}</h3>
+          <p>{{ dienst.tekst }}</p>
         </li>
       </ol>
     </div>
@@ -26,33 +21,29 @@ const nummer = (i) => String(i + 1).padStart(2, '0')
 </template>
 
 <style scoped>
-.services { padding: 0 0 clamp(72px, 10vw, 140px); }
-.services-grid { display: grid; grid-template-columns: 1fr 1.25fr; gap: clamp(32px, 6vw, 96px); align-items: start; }
-.services-head { position: sticky; top: calc(var(--header-h) + 36px); }
-.services-head h2 { margin-bottom: 20px; }
-.services-head p:last-child { color: var(--tekst-2); max-width: 30em; }
+.lijst { margin-top: clamp(56px, 7vw, 96px); }
 
 li {
   position: relative;
-  display: grid; grid-template-columns: 56px 1fr; gap: 16px;
-  padding: 30px 0; border-top: 1px solid var(--lijn-licht);
+  display: grid; grid-template-columns: 1fr 1fr; gap: 24px clamp(32px, 6vw, 96px); align-items: baseline;
+  padding: clamp(28px, 3vw, 40px) 0; border-top: 1px solid var(--lijn-licht);
 }
 li:last-child { border-bottom: 1px solid var(--lijn-licht); }
+/* De draad loopt over de rij bij hover */
 li::before {
   content: ""; position: absolute; left: 0; top: -1px; height: 1px; width: 100%;
-  background: var(--brons); transform: scaleX(0); transform-origin: left;
-  transition: transform .6s var(--ease);
+  background: var(--olijf); transform: scaleX(0); transform-origin: left;
+  transition: transform .8s var(--ease);
 }
 li:hover::before { transform: scaleX(1); }
-.num { font: 600 14px/1.9 var(--font-tekst); color: var(--brons); letter-spacing: .06em; }
-h3 { margin-bottom: 6px; }
-li p { margin: 0; color: var(--tekst-2); max-width: 32em; }
-
-@media (max-width: 960px) {
-  .services-grid { grid-template-columns: 1fr; }
-  .services-head { position: static; }
+h3 {
+  font-weight: 500; font-size: clamp(24px, 2.4vw, 32px); letter-spacing: -0.02em;
+  transition: transform .5s var(--ease);
 }
+li:hover h3 { transform: translateX(8px); }
+li p { margin: 0; color: var(--tekst-2); max-width: 30em; font-size: 17px; }
+
 @media (max-width: 760px) {
-  li { grid-template-columns: 40px 1fr; }
+  li { grid-template-columns: 1fr; gap: 8px; }
 }
 </style>
