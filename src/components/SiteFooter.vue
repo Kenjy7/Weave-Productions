@@ -1,10 +1,11 @@
 <script setup>
-import { bedrijf } from '../content/bedrijf'
+import { bedrijf, adresRegel } from '../content/bedrijf'
 import { navigatie } from '../content/home'
 import { toonProjecten } from '../composables/projecten'
 
 const links = navigatie.filter((item) => !item.alleenAlsProjecten || toonProjecten)
 const jaar = new Date().getFullYear()
+const adres = adresRegel()
 </script>
 
 <template>
@@ -12,7 +13,7 @@ const jaar = new Date().getFullYear()
     <div class="wrap">
       <div class="kolommen">
         <div class="merk">
-          <img src="/assets/logo/weave-horizontaal-kleur-op-donker.png" alt="Weave Productions" width="200" height="62" loading="lazy">
+          <img src="/assets/logo/weave-horizontaal-kleur-op-donker.svg" alt="Weave Productions" width="651" height="202" loading="lazy">
           <p class="tagline">{{ bedrijf.tagline }}</p>
         </div>
 
@@ -40,7 +41,7 @@ const jaar = new Date().getFullYear()
           <p class="gegevens">
             {{ bedrijf.naam }}<br>
             {{ bedrijf.eigenaar }}<br>
-            <template v-if="bedrijf.adres">{{ bedrijf.adres }}<br></template>
+            <template v-if="adres">{{ adres }}<br></template>
             Btw {{ bedrijf.btw }}
           </p>
         </div>

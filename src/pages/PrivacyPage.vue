@@ -1,5 +1,5 @@
 <script setup>
-import { bedrijf } from '../content/bedrijf'
+import { bedrijf, adresRegel } from '../content/bedrijf'
 import { seo } from '../content/seo'
 import { usePaginaHead } from '../composables/paginaHead'
 
@@ -7,7 +7,7 @@ usePaginaHead({ ...seo.privacy, pad: '/privacy', indexeren: false })
 
 // Laat deze tekst nalezen vóór livegang. Wijzigt er iets aan de verwerking? Pas dan ook de datum aan.
 const bijgewerkt = '6 oktober 2026'
-const adres = bedrijf.adres ?? '[adres volgt]'
+const adres = adresRegel()
 </script>
 
 <template>
@@ -21,7 +21,7 @@ const adres = bedrijf.adres ?? '[adres volgt]'
 
       <h2>Wie zijn wij?</h2>
       <p>
-        {{ bedrijf.naam }} is de handelsnaam van {{ bedrijf.eigenaar }}, {{ adres }}, België.
+        {{ bedrijf.naam }} is de handelsnaam van {{ bedrijf.eigenaar }}<template v-if="adres">, {{ adres }}</template>, {{ bedrijf.land }}.
         Ondernemings- en btw-nummer {{ bedrijf.btw }}.
         Je bereikt ons via <a :href="`mailto:${bedrijf.email}`">{{ bedrijf.email }}</a>
         of op <a :href="`tel:${bedrijf.telefoonLink}`">{{ bedrijf.telefoon }}</a>.

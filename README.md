@@ -56,7 +56,11 @@ npm run preview  # de gebouwde versie lokaal bekijken
 - Elke pagina wordt bij de build vooraf als volledige HTML gemaakt (vite-ssg), zodat Google alles meteen leest.
 - `robots.txt` en `sitemap.xml` (automatisch gemaakt bij elke build).
 - Per pagina: titel, omschrijving, canonieke URL, deelgegevens (Open Graph) en `noindex` waar nodig.
-- Structured data (schema.org `Organization`) op de homepagina.
+- Structured data als één graph op de homepagina: organisatie, Senne (oprichter), website, pagina, diensten en FAQ (`src/content/seo.js`).
+- FAQ-sectie met korte, feitelijke antwoorden (voor Google én AI-assistenten): `faq` in `src/content/home.js`.
+- `h1` bevat "Eventbureau"; titel en omschrijving bevatten de regio zodra `regio` in `bedrijf.js` is ingevuld.
+- `robots.txt` laat zoekmachines en AI-crawlers (ChatGPT, Perplexity, Claude, Gemini) expliciet toe.
+- Eén vaste bedrijfsomschrijving (`omschrijving` in `bedrijf.js`): gebruik exact die zin ook op LinkedIn en Google Bedrijfsprofiel.
 - Een echte 404-pagina.
 
 ## Vóór livegang
@@ -65,4 +69,6 @@ npm run preview  # de gebouwde versie lokaal bekijken
 - [ ] Privacyverklaring laten nalezen.
 - [ ] Netlify: site koppelen aan de repo, domein `weave-productions.be` toevoegen, DNS bij Combell aanpassen.
 - [ ] Google Search Console: domein verifiëren (TXT-record bij Combell) en `https://weave-productions.be/sitemap.xml` indienen.
-- [ ] Google Bedrijfsprofiel aanmaken (gratis, belangrijk om lokaal gevonden te worden).
+- [ ] Bing Webmaster Tools: site toevoegen (kan via import uit Search Console) en sitemap indienen. ChatGPT Search leunt sterk op Bing.
+- [ ] Google Bedrijfsprofiel aanmaken (gratis, belangrijk om lokaal gevonden te worden). Zonder publiek adres: kies "servicegebied".
+- [ ] Nieuwe profielen (Bedrijfsprofiel, LinkedIn-bedrijfspagina, Instagram) toevoegen aan `profielen` in `bedrijf.js`.

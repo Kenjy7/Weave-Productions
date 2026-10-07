@@ -1,4 +1,24 @@
+# Weave Productions — iedereen welkom, ook AI-zoekmachines.
+# Zo kunnen ChatGPT, Perplexity, Claude, Gemini en Copilot Weave vinden en citeren.
+
 User-agent: *
+Allow: /
+
+# Zoeken en citeren door AI-assistenten
+User-agent: OAI-SearchBot
+User-agent: ChatGPT-User
+User-agent: PerplexityBot
+User-agent: Perplexity-User
+User-agent: Claude-SearchBot
+User-agent: Claude-User
+User-agent: Bingbot
+Allow: /
+
+# Leren over Weave (training van AI-modellen) — ook toegelaten, zodat AI Weave "kent"
+User-agent: GPTBot
+User-agent: ClaudeBot
+User-agent: Google-Extended
+User-agent: Applebot-Extended
 Allow: /
 
 Sitemap: https://weave-productions.be/sitemap.xml

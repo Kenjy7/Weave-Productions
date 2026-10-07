@@ -5,7 +5,7 @@ import { navigatie } from '../content/home'
 import { toonProjecten } from '../composables/projecten'
 import { useAnkerOpnieuw } from '../composables/scroll'
 
-const links = navigatie.filter((item) => !item.alleenAlsProjecten || toonProjecten)
+const links = navigatie.filter((item) => !item.alleenFooter && (!item.alleenAlsProjecten || toonProjecten))
 
 const open = ref(false)
 const gescrold = ref(false)
@@ -38,7 +38,7 @@ onBeforeUnmount(() => {
   <header class="site-header" :class="{ 'is-scrolled': gescrold }">
     <div class="wrap header-inner">
       <RouterLink :to="{ path: '/', hash: '#top' }" class="brand" @click="ankerOpnieuw('#top')" aria-label="Weave Productions, naar boven">
-        <img src="/assets/logo/weave-horizontaal-kleur.png" alt="Weave Productions" width="240" height="74">
+        <img src="/assets/logo/weave-horizontaal-kleur.svg" alt="Weave Productions" width="651" height="202">
       </RouterLink>
 
       <button

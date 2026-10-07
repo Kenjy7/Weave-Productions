@@ -7,15 +7,16 @@ import ProcessSection from '../components/sections/ProcessSection.vue'
 import ProjectsSection from '../components/sections/ProjectsSection.vue'
 import ValuesSection from '../components/sections/ValuesSection.vue'
 import AboutSection from '../components/sections/AboutSection.vue'
+import FaqSection from '../components/sections/FaqSection.vue'
 import ContactSection from '../components/sections/ContactSection.vue'
 import { toonProjecten } from '../composables/projecten'
 import { useHead } from '@unhead/vue'
-import { seo, organisatieSchema } from '../content/seo'
+import { seo, homeSchema } from '../content/seo'
 import { usePaginaHead } from '../composables/paginaHead'
 
 usePaginaHead({ ...seo.home, pad: '/' })
 useHead({
-  script: [{ type: 'application/ld+json', innerHTML: JSON.stringify(organisatieSchema) }],
+  script: [{ type: 'application/ld+json', innerHTML: JSON.stringify(homeSchema()) }],
 })
 
 // Genummerde secties (01, 02, …). De nummering past zich vanzelf aan.
@@ -25,6 +26,7 @@ const secties = [
   ...(toonProjecten ? [ProjectsSection] : []),
   ValuesSection,
   AboutSection,
+  FaqSection,
   ContactSection,
 ]
 </script>

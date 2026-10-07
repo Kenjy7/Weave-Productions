@@ -1,17 +1,19 @@
 // Alle teksten van de homepagina. Huisstijl: je-vorm, "wij", korte zinnen (brandboek hfst. 02).
+import { bedrijf } from './bedrijf.js'
 
 export const navigatie = [
   { label: 'Diensten', hash: '#diensten' },
   { label: 'Aanpak', hash: '#aanpak' },
   { label: 'Projecten', hash: '#projecten', alleenAlsProjecten: true },
   { label: 'Over Mij', hash: '#over' },
+  { label: 'Veelgestelde vragen', hash: '#faq', alleenFooter: true },
 ]
 
 export const hero = {
   label: 'Eventbureau · Eventproductie & coördinatie',
   titel: 'Wij weven jouw event tot één geheel.',
   // Eerst kennismaken: wie we zijn en wat we doen. De oproep komt pas in de volgende sectie.
-  intro: 'Weave Productions is het eventbureau van Senne Van Herreweghe. Wij nemen de productie en coördinatie van je event op ons: planning, leveranciers, techniek en de mensen op de vloer.',
+  intro: bedrijf.omschrijving, // aanpassen in bedrijf.js
   kenmerken: ['Bedrijfsevents', 'Eigen projecten', 'Eén aanspreekpunt'],
   verder: { label: 'Lees verder', hash: '#intro' },
   klanten: 'Onder meer voor DPG Media',
@@ -99,4 +101,51 @@ export const contact = {
   titel: 'Nog vragen? Stuur gerust een berichtje.',
   intro: 'Vertel kort wat je plant: wat voor event, wanneer en voor hoeveel mensen. Je krijgt snel een antwoord.',
   mailOnderwerp: 'Nieuw event',
+}
+
+// Veelgestelde vragen. Antwoordmachines (Google, ChatGPT, Perplexity) halen hier letterlijk antwoorden uit:
+// hou de antwoorden kort, feitelijk en volledig op zichzelf. Laat Senne ze nalezen.
+const vragen = [
+  {
+    vraag: 'Wat doet Weave Productions?',
+    antwoord: `${bedrijf.omschrijving} Je hebt één aanspreekpunt, van het eerste idee tot de afbraak.`,
+  },
+  {
+    vraag: 'Wat is het verschil tussen eventproductie en eventcoördinatie?',
+    antwoord: 'Eventproductie is alles wat nodig is om een event te laten bestaan: locatie, techniek, catering, decor en leveranciers. Eventcoördinatie zorgt dat al die onderdelen op elkaar afgestemd zijn: één planning, één draaiboek en iemand die op de dag zelf de regie houdt. Weave Productions doet beide.',
+  },
+  {
+    vraag: 'Voor welke events kan ik bij Weave Productions terecht?',
+    antwoord: 'Voor bedrijfsevents, zoals we die verzorgen voor klanten als DPG Media, en voor kleinere eigen projecten. Twijfel je of jouw event past? Stuur gerust een berichtje.',
+  },
+  {
+    vraag: 'Kan ik jullie ook voor één onderdeel inschakelen?',
+    antwoord: 'Ja. Je kan ons inschakelen voor het volledige event of voor één onderdeel, bijvoorbeeld de techniek, de leveranciers of de regie op de dag zelf.',
+  },
+  {
+    vraag: 'Hoe verloopt een samenwerking?',
+    antwoord: 'We maken eerst kennis en luisteren naar wat je voor ogen hebt. Daarna krijg je een voorstel, één planning en een draaiboek. We stemmen locatie, leveranciers en techniek af, staan op de dag zelf op de vloer en zorgen na afloop voor de afbraak en een korte evaluatie. Je weet op elk moment waar we staan.',
+  },
+  {
+    vraag: 'Wat kost een event met Weave Productions?',
+    antwoord: 'Dat hangt af van je event: het aantal gasten, de locatie, de techniek en hoeveel je zelf wil doen. Na een kort kennismakingsgesprek krijg je een helder voorstel op maat.',
+  },
+  {
+    vraag: 'Wanneer neem ik best contact op?',
+    antwoord: 'Zodra je een idee of een datum hebt. Hoe vroeger we erbij zijn, hoe meer keuze je nog hebt in locatie en leveranciers.',
+  },
+]
+
+// Verschijnt pas als de regio is ingevuld in bedrijf.js
+if (bedrijf.regio) {
+  vragen.push({
+    vraag: 'In welke regio werkt Weave Productions?',
+    antwoord: `Weave Productions werkt vanuit ${bedrijf.regio}. Plan je een event elders in ${bedrijf.land}? Stuur gerust een berichtje.`,
+  })
+}
+
+export const faq = {
+  label: 'Veelgestelde vragen',
+  titel: 'Goed om te weten.',
+  vragen,
 }
