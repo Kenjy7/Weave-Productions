@@ -95,15 +95,36 @@ ol, ul { list-style: none; margin: 0; padding: 0; }
 /* Standaard ruimte rond een sectie */
 .sectie { padding: var(--sectie-ruimte) 0; }
 
-/* Zacht verschijnen bij scrollen (v-reveal) */
-.reveal { opacity: 0; transform: translateY(18px); transition: opacity 1s var(--ease), transform 1s var(--ease); }
+/* ── Motion ─────────────────────────────────────────────────────────────────
+   Rustig en in de geest van het merk: draden die zich trekken, dingen die in
+   elkaar geweven worden. Alles staat uit bij "minder beweging" (onderaan). */
+
+/* Verschijnen bij scrollen (v-reveal, zie src/composables/reveal.js) */
+.reveal {
+  opacity: 0; transform: translateY(14px);
+  transition: opacity 1s var(--ease), transform 1s var(--ease);
+}
 .reveal.is-in { opacity: 1; transform: none; }
+
+/* De sectiekop regelt zijn eigen animatie (zie SectieKop.vue) */
+.reveal.reveal-kop { opacity: 1; transform: none; }
 
 /* Rustige intro bij het laden (hero) */
 @keyframes opkomen { from { opacity: 0; transform: translateY(22px); } to { opacity: 1; transform: none; } }
 .opkomen { animation: opkomen 1.1s var(--ease) both; }
 
+/* Woord voor woord omhoog uit een masker (hero-titel) */
+@keyframes woordOp { from { transform: translateY(105%); } to { transform: none; } }
+
+/* FAQ en andere <details>: vloeiend open en dicht (moderne browsers, anders gewoon zonder animatie) */
+:root { interpolate-size: allow-keywords; }
+details::details-content {
+  block-size: 0; overflow: hidden;
+  transition: block-size .5s var(--ease), content-visibility .5s allow-discrete;
+}
+details[open]::details-content { block-size: auto; }
+
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { transition: none !important; animation: none !important; }
-  .reveal { opacity: 1; transform: none; }
+  .reveal { opacity: 1 !important; transform: none !important; }
 }

@@ -3,15 +3,18 @@ import SectieKop from '../SectieKop.vue'
 import { waarden } from '../../content/home'
 
 defineProps({ nummer: Number })
+
+const nr = (i) => String(i + 1).padStart(2, '0')
 </script>
 
 <template>
   <section class="sectie" aria-labelledby="waarden-titel">
     <div class="wrap">
-      <SectieKop :nummer="nummer" :label="waarden.label" :titel="waarden.titel" id="waarden-titel" />
-      <ul class="raster">
-        <li v-for="(waarde, i) in waarden.items" :key="waarde.titel" v-reveal :style="{ transitionDelay: `${i * 80}ms` }">
-          <svg class="teken" viewBox="0 0 1000 730" aria-hidden="true"><path d="M95 95 365 640 635 95M365 95 635 640 905 95" /></svg>
+      <SectieKop :nummer="nummer" :label="waarden.label" :titel="waarden.titel" :intro="waarden.intro" id="waarden-titel" />
+
+      <ul v-reveal class="raster">
+        <li v-for="(waarde, i) in waarden.items" :key="waarde.titel">
+          <span class="nr">{{ nr(i) }}</span>
           <h3>{{ waarde.titel }}</h3>
           <p>{{ waarde.tekst }}</p>
         </li>
@@ -22,23 +25,26 @@ defineProps({ nummer: Number })
 
 <style scoped>
 .raster {
-  display: grid; grid-template-columns: repeat(4, 1fr);
+  display: grid; grid-template-columns: repeat(4, 1fr); gap: 40px clamp(24px, 3vw, 48px);
   margin-top: clamp(56px, 7vw, 96px);
-  border-top: 1px solid var(--lijn-licht);
 }
-li { padding: clamp(28px, 3vw, 40px) clamp(20px, 2.4vw, 32px) 0 0; }
-li + li { padding-left: clamp(20px, 2.4vw, 32px); border-left: 1px solid var(--lijn-licht); }
-.teken { width: 30px; height: 22px; margin-bottom: 40px; fill: none; stroke: var(--zand); stroke-width: 100; stroke-linecap: round; stroke-linejoin: round; }
-h3 { margin-bottom: 12px; }
-p { margin: 0; color: var(--tekst-2); }
+li { position: relative; padding-top: 28px; border-top: 1px solid var(--lijn-licht); }
+/* Bij hover loopt de draad over de bovenrand, zoals bij de diensten */
+li::before {
+  content: ""; position: absolute; left: 0; top: -1px; width: 100%; height: 1px;
+  background: var(--olijf); transform: scaleX(0); transform-origin: left; transition: transform .8s var(--ease);
+}
+li:hover::before { transform: scaleX(1); }
+
+.nr { display: block; margin-bottom: 40px; font: 600 13px/1 var(--font-tekst); letter-spacing: .08em; color: var(--brons); font-variant-numeric: tabular-nums; }
+h3 { font-weight: 500; font-size: clamp(22px, 2vw, 26px); letter-spacing: -0.015em; margin-bottom: 12px; }
+p { margin: 0; color: var(--tekst-2); max-width: 26em; }
 
 @media (max-width: 960px) {
-  .raster { grid-template-columns: 1fr 1fr; border-top: 0; }
-  li, li + li { padding: 32px 24px 32px 0; border-left: 0; border-top: 1px solid var(--lijn-licht); }
-  li:nth-child(even) { padding-left: 24px; border-left: 1px solid var(--lijn-licht); }
+  .raster { grid-template-columns: 1fr 1fr; }
 }
 @media (max-width: 560px) {
-  .raster { grid-template-columns: 1fr; }
-  li:nth-child(even) { padding-left: 0; border-left: 0; }
+  .raster { grid-template-columns: 1fr; gap: 32px; }
+  .nr { margin-bottom: 20px; }
 }
 </style>

@@ -10,8 +10,8 @@ defineProps({ nummer: Number })
   <section class="sectie" id="projecten" aria-labelledby="projecten-titel">
     <div class="wrap">
       <SectieKop :nummer="nummer" :label="projecten.label" :titel="projecten.titel" id="projecten-titel" />
-      <ul class="project-grid">
-        <li v-for="(project, i) in projecten.items" :key="project.foto" v-reveal class="project" :class="{ 'project-lg': i === 0 }">
+      <ul v-reveal class="project-grid">
+        <li v-for="(project, i) in projecten.items" :key="project.foto" class="project" :class="{ 'project-lg': i === 0 }">
           <figure class="project-media pattern">
             <FotoOfPatroon :src="project.foto" :alt="project.alt" />
           </figure>

@@ -25,7 +25,7 @@ const kanalen = [
           <p class="lead">{{ contact.intro }}</p>
           <a class="btn btn-primary btn-pijl" :href="mailLink">Stuur een mail</a>
         </div>
-        <ul class="kanalen">
+        <ul v-reveal class="kanalen">
           <li v-for="kanaal in kanalen" :key="kanaal.label">
             <a :href="kanaal.href" :rel="kanaal.extern ? 'noopener' : undefined">
               <span class="k-label">{{ kanaal.label }}</span>

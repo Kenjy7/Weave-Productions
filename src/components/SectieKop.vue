@@ -12,7 +12,7 @@ const nr = (n) => String(n).padStart(2, '0')
 </script>
 
 <template>
-  <div class="sectie-kop">
+  <div v-reveal:kop class="sectie-kop">
     <p class="draad">
       <span v-if="nummer" class="nr">{{ nr(nummer) }}</span>
       <span class="label">{{ label }}</span>
@@ -37,5 +37,15 @@ h2 { max-width: 16ch; }
 }
 
 .on-dark .nr { color: var(--zand); }
+
+/* Motion: de draad trekt zich van links naar rechts, de rest komt zacht in beeld */
+.reveal-kop .draad::after { transform: scaleX(0); transform-origin: left; transition: transform 1.4s var(--ease); }
+.reveal-kop .nr, .reveal-kop .label { opacity: 0; transition: opacity .8s var(--ease); }
+.reveal-kop h2 { opacity: 0; transform: translateY(14px); transition: opacity 1s var(--ease) .2s, transform 1s var(--ease) .2s; }
+.reveal-kop .intro { opacity: 0; transform: translateY(16px); transition: opacity 1s var(--ease) .35s, transform 1s var(--ease) .35s; }
+.reveal-kop.is-in .draad::after { transform: scaleX(1); }
+.reveal-kop.is-in .nr, .reveal-kop.is-in .label { opacity: 1; }
+.reveal-kop.is-in h2 { opacity: 1; transform: none; }
+.reveal-kop.is-in .intro { opacity: 1; transform: none; }
 .on-dark .intro { color: var(--tekst-op-donker); }
 </style>

@@ -10,8 +10,8 @@ defineProps({ nummer: Number })
     <div class="wrap">
       <SectieKop :nummer="nummer" :label="diensten.label" :titel="diensten.titel" :intro="diensten.intro" id="diensten-titel" />
 
-      <ol class="lijst">
-        <li v-for="dienst in diensten.items" :key="dienst.titel" v-reveal>
+      <ol v-reveal class="lijst">
+        <li v-for="dienst in diensten.items" :key="dienst.titel">
           <h3>{{ dienst.titel }}</h3>
           <p>{{ dienst.tekst }}</p>
         </li>

@@ -44,7 +44,7 @@ onBeforeUnmount(() => {
         </svg>
       </div>
 
-      <ol class="steps">
+      <ol v-reveal class="steps">
         <li v-for="(stap, i) in aanpak.stappen" :key="stap.titel">
           <span class="step-num">{{ String(i + 1).padStart(2, '0') }}</span>
           <h3>{{ stap.titel }}</h3>

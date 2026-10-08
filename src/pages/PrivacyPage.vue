@@ -19,9 +19,9 @@ const adres = adresRegel()
 
       <p>We gaan zorgvuldig om met je gegevens. Hieronder lees je kort en duidelijk wat we bijhouden, waarom, en wat je rechten zijn.</p>
 
-      <h2>Wie zijn wij?</h2>
+      <h2>Wie ben ik?</h2>
       <p>
-        {{ bedrijf.naam }} is de handelsnaam van {{ bedrijf.eigenaar }}<template v-if="adres">, {{ adres }}</template>, {{ bedrijf.land }}.
+        {{ bedrijf.naam }} is de handelsnaam van {{ bedrijf.eigenaar }}.
         Ondernemings- en btw-nummer {{ bedrijf.btw }}.
         Je bereikt ons via <a :href="`mailto:${bedrijf.email}`">{{ bedrijf.email }}</a>
         of op <a :href="`tel:${bedrijf.telefoonLink}`">{{ bedrijf.telefoon }}</a>.

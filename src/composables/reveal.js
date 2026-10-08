@@ -1,6 +1,9 @@
-// v-reveal: laat een element zacht verschijnen zodra het in beeld komt.
+// v-reveal: laat een blok zacht verschijnen zodra het in beeld komt.
+//   v-reveal       → zacht omhoog en zichtbaar
+//   v-reveal:kop   → sectiekop: de draad trekt zich, de rest komt zacht in beeld
+// Bewust spaarzaam: één reveal per blok, niet per rij.
 
-const reduced = () => window.matchMedia('(prefers-reduced-motion: reduce)').matches
+import { minderBeweging } from './scroll'
 
 let observer
 function getObserver() {
@@ -11,14 +14,17 @@ function getObserver() {
         observer.unobserve(entry.target)
       }
     })
-  }, { rootMargin: '0px 0px -8% 0px' })
+  }, { rootMargin: '0px 0px -10% 0px' })
   return observer
 }
 
 export const reveal = {
-  mounted(el) {
-    if (reduced() || !('IntersectionObserver' in window)) return
+  mounted(el, binding) {
+    if (minderBeweging() || !('IntersectionObserver' in window)) return
+    // Staat het element bij het laden al in beeld, dan niet verbergen (anders flitst de tekst)
+    if (el.getBoundingClientRect().top < window.innerHeight * 0.9) return
     el.classList.add('reveal')
+    if (binding.arg) el.classList.add(`reveal-${binding.arg}`)
     getObserver().observe(el)
   },
   unmounted(el) {

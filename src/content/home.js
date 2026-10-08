@@ -74,6 +74,7 @@ export const projecten = {
 export const waarden = {
   label: 'Waar je op kan rekenen',
   titel: 'Zakelijk waar het moet, speels waar het kan.',
+  intro: 'Vier dingen die je merkt aan elk event van Weave, van de eerste mail tot de laatste kabel.',
   items: [
     { titel: 'Verbindend', tekst: 'We brengen mensen, partners en onderdelen samen. Eén aanspreekpunt, één verhaal.' },
     { titel: 'Betrouwbaar', tekst: 'Afspraken worden nagekomen. Op de dag zelf hoef jij je geen zorgen te maken.' },
